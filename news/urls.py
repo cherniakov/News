@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import HomeNews, NewsByCategory, NewsView, NewsCreate, register, user_login, user_logout
+from .views import HomeNews, NewsByCategory, NewsView, NewsCreate, UserLogin, register,  user_logout
 
 urlpatterns = [
 
@@ -8,6 +8,8 @@ urlpatterns = [
     path('news/<int:pk>/', NewsView.as_view(), name='news_view'),
     path('add-news/', NewsCreate.as_view(), name='add_news'),
     path('register/', register, name='register'),
-    path('login/', user_login, name='login'),
+    # path('login/', user_login, name='login'),
+    path('login/', UserLogin.as_view(), name='login'),
+
     path('logout/', user_logout, name='logout'),
 ]

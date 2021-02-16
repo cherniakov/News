@@ -29,6 +29,7 @@
                                 </a>
                             </li>
                         {% endif %}
+
                         {% for p in page_obj.paginator.page_range %}
                             {% if page_obj.number == p %}
                                 <li class="page-item active " aria-current="page">
@@ -49,6 +50,7 @@
                             </li>
                         {% endif %}
                     </ul>
+
                 </nav>
             {% endif %}
         </div>

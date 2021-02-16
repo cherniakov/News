@@ -1,3 +1,4 @@
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, CreateView
 from django.core.paginator import Paginator
@@ -23,26 +24,31 @@ def register(request):
     return render(request, 'news/register.html', {'form': form})
 
 
-def user_login(request):
-    if request.method == 'POST':
-        form = UserLoginForm(data=request.POST)
-        if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            return redirect('home')
-    else:
-        form = UserLoginForm()
-    return render(request, 'news/login.html', {'form': form})
-
-
 def user_logout(request):
     logout(request)
     return redirect('login')
 
 
+# def user_login(request):
+#     if request.method == 'POST':
+#         form = UserLoginForm(data=request.POST)
+#         if form.is_valid():
+#             user = form.get_user()
+#             login(request, user)
+#             return redirect('home')
+#     else:
+#         form = UserLoginForm()
+#     return render(request, 'news/login.html', {'form': form})
+
+
+class UserLogin(LoginView):
+    template_name = 'news/login.html'
+    form_class = UserLoginForm
+
+
 class HomeNews(ListView):
     model = News
-    paginate_by = 2
+    paginate_by = 3
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(HomeNews, self).get_context_data()
