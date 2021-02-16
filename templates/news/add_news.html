@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Добавление новостей
+{% endblock %}
+
+
+{% block sidebar %}
+    {% include 'news/inc/_sibebar.html' %}
+{% endblock sidebar %}
+
+
+{% block content %}
+   <h2> Добавление новостей </h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+    <button type="submit" class="btm btn-primary btn-block"> Добавить новость </button>
+    </form>
+{% endblock content%}

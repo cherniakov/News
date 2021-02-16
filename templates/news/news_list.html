@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'news/inc/_sibebar.html' %}
+{% endblock sidebar %}
+
+{% block content %}
+    {% for item in object_list %}
+        <div class="card mb-3" >
+            <div class="card-header"> {{item.category}} </div>
+            <div class="row">
+                <div class="col-lg-5">
+                {% if item.photo %}
+                    <img src="{{ item.photo.url }}" alt="photo" width="275" height="200" class="float-left mr-3">
+                {% else %}
+                    <img src="https://picsum.photos/id/1060/300/235/?blur" alt="" width="275" height="200" class="float-left mr-3">
+                {% endif %}
+                </div>
+                <div class="col-lg-7">
+                    <h5 class="card-title">{{ item.title }}</h5>
+                    <p class="card-text">{{ item.content }}</p>
+                    <a href="{% url 'news_view' item.pk %}" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="card-footer text-muted"> {{ item.created_at | date:'Y-m-d H:m' }} </div>
+        </div>
+    {% endfor %}
+{% endblock content%}

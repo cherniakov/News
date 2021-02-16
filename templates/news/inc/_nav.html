@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'home' %}">Новости</a>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item"> <a class="nav-link" href="{% url 'home' %}">Главная страница</a> </li>
+        {% if request.user.is_authenticated %}
+        <li class="nav-item"> <a class="nav-link" href="{% url 'add_news' %}">Добавить новости</a> </li>
+        {% endif %}
+    </ul>
+    <span class="navbar-text" >
+        {% if request.user.is_authenticated %}
+            {{ user.username }} | <a href="{% url 'logout' %}">Выход </a>
+        {% else %}
+            <a href="{% url 'register' %}">Регистрация</a> | <a href="{% url 'login' %}">Вход</a>
+        {% endif %}
+    </span>
+    </div>
+</nav>
